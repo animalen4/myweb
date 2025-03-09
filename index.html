@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magnifying Glass Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Magnifying Glass Tool</h1>
+            <p>Double-click anywhere to activate/deactivate the magnifying glass. It will show the text with inverted colors.</p>
+        </header>
+        
+        <div class="install-instructions">
+            <h3>Installation Instructions</h3>
+            <ol>
+                <li>Save this page as a bookmark by pressing Ctrl+D (Windows/Linux) or Cmd+D (Mac).</li>
+                <li>You can also download all files and run them locally on any computer.</li>
+                <li>On mobile devices, use two fingers to tap and activate the magnifier.</li>
+                <li>Double-click anywhere to deactivate the magnifier.</li>
+            </ol>
+        </div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label for="magnifier-size">Magnifier Size:</label>
+                <input type="range" id="magnifier-size" min="100" max="300" value="180">
+            </div>
+            <div class="control-group">
+                <label for="zoom-level">Zoom Level:</label>
+                <input type="range" id="zoom-level" min="1" max="3" step="0.1" value="1.5">
+            </div>
+            <div class="control-group">
+                <label for="font-size">Font Size:</label>
+                <input type="range" id="font-size" min="1" max="2" step="0.1" value="1">
+            </div>
+        </div>
+        
+        <div class="content-area">
+            <div class="sample-text">
+                <h2>Sample Text to Magnify</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a metus quis lorem malesuada luctus. Cras lacinia, eros at dapibus molestie, risus tortor pretium ligula, eu malesuada tortor eros dapibus mi. Proin laoreet efficitur suscipit. Donec molestie volutpat euismod. Nulla gravida ligula in eros facilisis, sed dignissim tellus aliquam.</p>
+                <p>Etiam in fermentum mi. Sed et tempor felis, eu aliquet nisi. Nam eget ullamcorper arcu. Nunc porttitor nisl a dolor blandit, eget consequat sem maximus. Phasellus lacinia quam porta orci malesuada, vel tincidunt.</p>
+                <h3>Additional Content</h3>
+                <p>Vestibulum bibendum felis sit amet dolor auctor molestie. In aliquet eget nibh vel venenatis. Morbi sagittis nisi a elit efficitur dapibus. Donec id urna lacus. Praesent pharetra luctus ex ut viverra. In hac habitasse platea dictumst. Donec vitae augue at lectus porta aliquam eu non enim.</p>
+            </div>
+            <div id="magnifier" class="magnifier">
+                <div id="magnifier-content" class="magnifier-content"></div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
