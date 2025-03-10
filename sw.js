@@ -10,9 +10,7 @@ const PRECACHE_ASSETS = [
 // Instalar y precargar recursos en la caché
 self.addEventListener('install', event => {
     event.waitUntil(
-        caches.open(CACHE_NAME).then(cache => {
-            return cache.addAll(PRECACHE_ASSETS);
-        })
+        caches.open(CACHE_NAME).then(cache => cache.addAll(PRECACHE_ASSETS))
     );
 });
 
@@ -29,15 +27,15 @@ self.addEventListener('activate', event => {
             );
         })
     );
+    self.clients.claim();
 });
 
 // Interceptar las solicitudes y servir desde la caché o la red
 self.addEventListener('fetch', event => {
     event.respondWith(
-        fetch(event.request).catch(() => {
-            return caches.match(event.request).then(response => {
-                return response || caches.match('/sin conexión.html');
-            });
-        })
+        fetch(event.request)
+            .catch(() => caches.match(event.request))
+            .then(response => response || caches.match('/sin conexión.html'))
     );
 });
+  
