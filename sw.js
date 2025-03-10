@@ -1,37 +1,43 @@
-const CACHE_NAME = 'cool-cache';
+const CACHE_NAME = 'cool-cache-v2';
 
-// Add whichever assets you want to precache here:
+// Agrega 'sin conexión.html' a la lista de archivos precargados
 const PRECACHE_ASSETS = [
+    '/sin conexión.html',
     '/assets/',
     '/src/'
-]
+];
 
-// Listener for the install event - precaches our assets list on service worker install.
+// Instalar y precargar recursos en la caché
 self.addEventListener('install', event => {
-    event.waitUntil((async () => {
-        const cache = await caches.open(CACHE_NAME);
-        cache.addAll(PRECACHE_ASSETS);
-    })());
+    event.waitUntil(
+        caches.open(CACHE_NAME).then(cache => {
+            return cache.addAll(PRECACHE_ASSETS);
+        })
+    );
 });
 
+// Activar y limpiar cachés antiguas
 self.addEventListener('activate', event => {
-  event.waitUntil(self.clients.claim());
+    event.waitUntil(
+        caches.keys().then(cacheNames => {
+            return Promise.all(
+                cacheNames.map(cache => {
+                    if (cache !== CACHE_NAME) {
+                        return caches.delete(cache);
+                    }
+                })
+            );
+        })
+    );
 });
 
+// Interceptar las solicitudes y servir desde la caché o la red
 self.addEventListener('fetch', event => {
-  event.respondWith(async () => {
-      const cache = await caches.open(CACHE_NAME);
-
-      // match the request to our cache
-      const cachedResponse = await cache.match(event.request);
-
-      // check if we got a valid response
-      if (cachedResponse !== undefined) {
-          // Cache hit, return the resource
-          return cachedResponse;
-      } else {
-        // Otherwise, go to the network
-          return fetch(event.request)
-      };
-  });
+    event.respondWith(
+        fetch(event.request).catch(() => {
+            return caches.match(event.request).then(response => {
+                return response || caches.match('/sin conexión.html');
+            });
+        })
+    );
 });
