@@ -1,8 +1,11 @@
 {
-  "name": "Mi aplicacion",
-  "short_name": "aplicacion",
-  "start_url": "index.html",
+  "name": "Mi Aplicación",
+  "short_name": "App",
+  "description": "Una aplicación web progresiva",
+  "start_url": "/index.html",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#000000",
   "icons": [
