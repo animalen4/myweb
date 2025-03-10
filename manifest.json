@@ -1,8 +1,7 @@
 {
-  "name": "Mi Aplicación",
-  "short_name": "MiApp",
-  "herranienta de lupa para lectura": "Esta es una Progressive Web App creada con GitHub Pages.",
-  "start_url": "/",
+  "name": "Mi aplicacion",
+  "short_name": "aplicacion",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
